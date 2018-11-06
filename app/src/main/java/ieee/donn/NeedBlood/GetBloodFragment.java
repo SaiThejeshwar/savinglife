@@ -26,6 +26,7 @@ import ieee.donn.Main.ConnectUsers;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import dmax.dialog.SpotsDialog;
 
+import ieee.donn.Main.ConnectUsers1;
 import ieee.donn.Main.MainActivity;
 import ieee.donn.R;
 import ieee.donn.Services.MessagingService;
@@ -164,8 +165,8 @@ public class GetBloodFragment extends Fragment {
                                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                             @Override
                                             public void onClick(SweetAlertDialog sDialog) {
-                                                //Intent intent = new Intent(getActivity(), ConnectUsers.class);
-                                                //startActivity(intent);
+                                                Intent intent = new Intent(getActivity(), ConnectUsers1.class);
+                                                startActivity(intent);
                                                 sDialog.dismissWithAnimation();
 
 

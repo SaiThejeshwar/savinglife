@@ -10,7 +10,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import java.io.IOException;
 
 /**
- * Created by Toni on 30.09.2016.
+ * Created by Shusrutha  on 1.11.2018.
  */
 public class FCMHelper {
 
@@ -144,7 +144,7 @@ public class FCMHelper {
 
         StringEntity entity = new StringEntity(data);
 
-        // JSON-Object übergeben
+        // JSON-Object
         httpPost.setEntity(entity);
 
         HttpClient httpClient = HttpClientBuilder.create().build();

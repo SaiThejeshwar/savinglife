@@ -109,40 +109,13 @@ public class MessagingService extends FirebaseMessagingService {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, requestID, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
-        //String channelId = getString(R.string.default_notification_channel_id);
+
+        String channelId = getString(R.string.default_notification_channel_id);
         //Uri alarmSound= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // The id of the channel.
-        String id = "my_channel_01";
-
-        // The user-visible name of the channel.
-        CharSequence name = "Donors";
-
-        // The user-visible description of the channel.
-        String description = "Please Help";
-
-        int importance = NotificationManager.IMPORTANCE_HIGH;
-
-        NotificationChannel mChannel = new NotificationChannel(id, name,importance);
-
-        // Configure the notification channel.
-
-
-        mNotificationManager.createNotificationChannel(mChannel);
-
-        mNotificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // Sets an ID for the notification, so it can be updated.
-        int notifyID = 1;
-
-        // The id of the channel.
-        String CHANNEL_ID = "my_channel_01";
 
 
         NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(this)
+                new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.ic_launcher)
                         .setContentTitle("Blood Needed")
                         .setContentText(bla)
@@ -152,7 +125,7 @@ public class MessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(100 /* ID of notification */, notificationBuilder.build());
+        notificationManager.notify(NOTIFICATION_ID /* ID of notification */, notificationBuilder.build());
 
     }
 
