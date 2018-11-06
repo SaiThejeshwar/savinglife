@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
 
-        setCurrentFragment(new HomeFragment(), "Org Donor");
+        setCurrentFragment(new HomeFragment(), "Life Saving");
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        toolbar.setTitle("OrgDonor");
+        toolbar.setTitle("LifeSaving");
 
     }
 

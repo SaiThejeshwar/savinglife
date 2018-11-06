@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingTop="9dp"
-                android:text="OrgDonor"
+                android:text="LifeSaving"
                 android:textColor="#2E7D32"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:layout_marginTop="4dp"
-                android:text="Developed By : Shusrutha Team, IT Dept., SNIST"
+                android:text="Developed By : Dr. N. Ch. Sriman Narayana Iyengar  Team, IT Dept., SNIST"
                 android:textColor="#000"
                 android:textSize="15sp" />
 
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:layout_marginTop="4dp"
-                android:text="Version Number :   alpha 1.0"
+                android:text="Version Number : alpha 1.0"
                 android:textColor="#000"
                 android:textSize="15sp" />
 
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:layout_marginTop="4dp"
-                android:text="Org Donor, a blood donation service designed to :\n\n- Schedule Blood donation\n- Raise blood donation awareness\n- Create a database of blood donors\n- Provide Peer to Peer Blood donation\n- Prepare people to be eligible to donate blood\n"
+                android:text="Life Saving, is a blood donation service designed to :\n\n- Schedule Blood donation\n- Raise blood donation awareness\n- Create a database of blood donors\n- Provide Peer to Peer Blood donation\n- Prepare people to be eligible to donate blood\n"
                 android:textColor="#000"
                 android:textSize="15sp" />
 
@@ -113,24 +113,6 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp">
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="4dp"
-                android:text="Org Donor is signed under GNU Public License v3\n\nYou may re-use, clone, copy the code and resources with respect to the license.\n\nContributions to the project through github or email are welcomed."
-                android:textColor="#000"
-                android:textSize="15sp" />
-
-
-        </LinearLayout>
 
     </android.support.v7.widget.CardView>
 

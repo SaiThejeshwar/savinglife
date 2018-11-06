@@ -32,7 +32,7 @@ public class HomeFragment extends Fragment {
         root = inflater.inflate(R.layout.home, container, false);
 
         toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle("Org Donor");
+        toolbar.setTitle("Life Saving");
 
         join = (CardView) root.findViewById(R.id.join);
         check = (CardView) root.findViewById(R.id.check);

@@ -47,15 +47,18 @@ public class RegisterFragment extends Fragment {
     View root;
     Toolbar toolbar;
     Locale[] locale;
-    Spinner spinner;
+    Spinner spinnercity,bloodsp;
     Button register;
     String country;
+    String bloodv;
     SharedPreferences spf;
     SharedPreferences.Editor edit;
     ArrayList<String> countries;
+    ArrayList<String> bloodt;
     ArrayAdapter<String> adapter;
-    EditText name, email, phone, blood, facebook, password;
-    String nameStr, emailStr, phoneStr, bloodStr, facebookStr, passwordStr;
+    ArrayAdapter<String> adapter1;
+    EditText name, email, phone,  facebook, password;
+    String nameStr, emailStr, phoneStr, facebookStr, passwordStr;
 
     String mUserId;
     FirebaseAuth mFirebaseAuth;
@@ -72,17 +75,39 @@ public class RegisterFragment extends Fragment {
         password = (EditText) root.findViewById(R.id.editText7);
         phone = (EditText) root.findViewById(R.id.editText3);
         facebook = (EditText) root.findViewById(R.id.editText5);
-        blood = (EditText) root.findViewById(R.id.editText4);
-        spinner = (Spinner) root.findViewById(R.id.spinner);
+        bloodsp = (Spinner) root.findViewById(R.id.bloods);
+        spinnercity = (Spinner) root.findViewById(R.id.spinnercity);
 
-        setupSpinner();
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        setupSpinner1();
+        bloodsp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 
-                int position = spinner.getSelectedItemPosition();
+                int position = bloodsp.getSelectedItemPosition();
+
+                if (!(position == 0) || !(position == 1)) {
+
+                    bloodv = bloodt.get(position);
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+
+
+        });
+
+        setupSpinner();
+        spinnercity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+                int position = spinnercity.getSelectedItemPosition();
 
                 if (!(position == 0) || !(position == 1)) {
 
@@ -100,6 +125,7 @@ public class RegisterFragment extends Fragment {
         });
 
 
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,14 +133,12 @@ public class RegisterFragment extends Fragment {
                 nameStr = name.getText().toString();
                 emailStr = email.getText().toString();
                 phoneStr = phone.getText().toString();
-                bloodStr = blood.getText().toString();
                 facebookStr = facebook.getText().toString();
                 passwordStr = password.getText().toString();
 
 
                 if (nameStr.isEmpty() || emailStr.isEmpty() ||
-                        phoneStr.isEmpty() || bloodStr.isEmpty() ||
-                        facebookStr.isEmpty() || passwordStr.isEmpty()) {
+                        phoneStr.isEmpty() || facebookStr.isEmpty() || passwordStr.isEmpty()) {
 
                     Toast.makeText(getActivity(), "Fill all data please..", Toast.LENGTH_LONG).show();
 
@@ -122,7 +146,7 @@ public class RegisterFragment extends Fragment {
                 } else {
 
 
-                    final AlertDialog dialog = new SpotsDialog(getActivity(), "Loginn' in..");
+                    final AlertDialog dialog = new SpotsDialog(getActivity(), "Loging' in..");
                     dialog.show();
 
                     mFirebaseAuth = FirebaseAuth.getInstance();
@@ -144,7 +168,7 @@ public class RegisterFragment extends Fragment {
                                         mDatabase.child("users").child(mUserId).child("data").child("phone").setValue((phone.getText().toString()));
                                         mDatabase.child("users").child(mUserId).child("data").child("password").setValue((password.getText().toString()));
                                         mDatabase.child("users").child(mUserId).child("data").child("facebook").setValue((facebook.getText().toString()));
-                                        mDatabase.child("users").child(mUserId).child("data").child("blood").setValue((blood.getText().toString().toUpperCase()));
+                                        mDatabase.child("users").child(mUserId).child("data").child("blood").setValue((bloodv));
                                         mDatabase.child("users").child(mUserId).child("data").child("city").setValue((country));
 
 
@@ -159,7 +183,7 @@ public class RegisterFragment extends Fragment {
                                                     @Override
                                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                                         if (task.isSuccessful()) {
-
+                                                            FirebaseMessaging.getInstance().subscribeToTopic("Km");
                                                             FirebaseMessaging.getInstance().subscribeToTopic("Ap");
                                                             FirebaseMessaging.getInstance().subscribeToTopic("Am");
                                                             FirebaseMessaging.getInstance().subscribeToTopic("Bp");
@@ -231,12 +255,45 @@ public class RegisterFragment extends Fragment {
 
     ////////Methods/////////    ////////Methods/////////    ////////Methods////////
 
+    public void setupSpinner1() {
+
+        setupBloodList();
+
+        adapter1 = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, bloodt);
+        bloodsp.setAdapter(adapter1);
+
+
+    }
+
+    public void setupBloodList() {
+
+        locale = Locale.getAvailableLocales();
+        bloodt = new ArrayList<String>();
+
+        bloodt.add("Select Donation Type");
+
+        bloodt.add("Kidney");
+        bloodt.add("O-");
+        bloodt.add("O+");
+        bloodt.add("A+");
+        bloodt.add("A-");
+        bloodt.add("B+");
+        bloodt.add("B-");
+        bloodt.add("AB+");
+        bloodt.add("AB-");
+
+    }
+
+
+
+
+
     public void setupSpinner() {
 
         setupCountriesList();
 
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, countries);
-        spinner.setAdapter(adapter);
+        spinnercity.setAdapter(adapter);
 
 
     }
@@ -246,34 +303,29 @@ public class RegisterFragment extends Fragment {
         locale = Locale.getAvailableLocales();
         countries = new ArrayList<String>();
 
-        countries.add("Select City");
-        countries.add("Cairo");
-        countries.add("Alexandria");
-        countries.add("Giza");
-        countries.add("Shubra El Kheima");
-        countries.add("Port Said");
-        countries.add("Suez");
-        countries.add("El Mahala El Kubra");
-        countries.add("Luxor");
-        countries.add("Mansoura");
-        countries.add("Tanta");
-        countries.add("Assiut");
-        countries.add("Ismailia");
-        countries.add("Fayoum");
-        countries.add("Zagazig");
-        countries.add("Damietta");
-        countries.add("Aswan");
-        countries.add("Minya");
-        countries.add("Damanhour");
-        countries.add("Beni Suef");
-        countries.add("Hurghada");
-        countries.add("Qena");
-        countries.add("Sohag");
-        countries.add("Shibin El Kom");
-        countries.add("Banha");
-        countries.add("Arish");
+        countries.add("Select Town/City");
+
+        countries.add("Hyderabad");
+        countries.add("Warangal");
+        countries.add("Nizamabad");
+        countries.add("Karimnagar");
+        countries.add("Vizag");
+        countries.add("Mahaboobnagar");
+        countries.add("Guntur");
+        countries.add("Medak");
+        countries.add("Medchal");
+        countries.add("Delhi");
+        countries.add("Bangalore");
+        countries.add("Chennai");
+        countries.add("Trivundrum");
+        countries.add("Mumbai");
+        countries.add("Pune");
+        countries.add("Srinagar");
+        countries.add("Mizoram");
 
     }
+
+
 
     public void save(String key, String value) {
 

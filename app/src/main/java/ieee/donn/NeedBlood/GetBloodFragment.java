@@ -1,6 +1,7 @@
 package ieee.donn.NeedBlood;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,9 +22,11 @@ import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
-
+import ieee.donn.Main.ConnectUsers;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import dmax.dialog.SpotsDialog;
+
+import ieee.donn.Main.MainActivity;
 import ieee.donn.R;
 import ieee.donn.Services.MessagingService;
 import ieee.donn.Util.FCMHelper;
@@ -46,7 +49,7 @@ public class GetBloodFragment extends Fragment {
     ArrayAdapter<String> adapter;
     SharedPreferences.Editor edit;
     Spinner countrySpinner, bloodSpinner;
-    String[] BloodList = {"Select Donation Type", "-------------------", "Kidney", "O-", "O+", "A+", "A-", "B+", "B-", "AB+", "AB-"};
+    String[] BloodList = {"Select Donation Type", "------------", "Kidney", "O-", "O+", "A+", "A-", "B+", "B-", "AB+", "AB-"};
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -94,67 +97,7 @@ public class GetBloodFragment extends Fragment {
 
                 } else
                 {
-                    JsonObject notificationObject;
-                    JsonObject dataObject;
-
-                    AlertDialog dialog = new SpotsDialog(getActivity(), "Sending Request..");
-
-                    Boolean success;
-
-                    FCMHelper hepler = FCMHelper.getInstance();
-
-                    notificationObject = new JsonObject();
-                    notificationObject.addProperty("title", "Blood needed");
-                    notificationObject.addProperty("body", "Someone is searching for donors in " + country);
-                    notificationObject.addProperty("click_action", MessagingService.ACTION_CONNECT_USERS);
-
-                    dataObject = new JsonObject();
-                    dataObject.addProperty("blood", bloodT);
-                    dataObject.addProperty("country", country);
-                    dataObject.addProperty("email", email);
-                    dataObject.addProperty("phone", phone);
-                    dataObject.addProperty("facebook", facebook);
-                    dataObject.addProperty("name", name);
-
-                    dialog.show();
-
-
-
-                    dialog.dismiss();
-
-
-                    try {
-
-
-                        hepler.sendTopicNotificationAndData(blood, notificationObject, dataObject);
-
-                        success = true;
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-
-                        success = false;
-
-                    }
-
-                    if (true) {
-
-                        new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
-                                .setTitleText("Request Sent")
-                                .setContentText("Your request was sent to all available donors, relax and wait for a reply")
-                                .setConfirmText("Cool!")
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                    @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
-
-                                        sDialog.dismissWithAnimation();
-
-                                    }
-                                }).show();
-                    }
-
-
-                    /*new AsyncTask<Void, Void, Void>() {
+                    new AsyncTask<Void, Void, Void>() {
                         JsonObject notificationObject;
                         JsonObject dataObject;
 
@@ -179,6 +122,7 @@ public class GetBloodFragment extends Fragment {
                             dataObject.addProperty("facebook", facebook);
                             dataObject.addProperty("name", name);
 
+                            System.out.print("Thsi is executed"+dataObject);
                             dialog.show();
 
                         }
@@ -220,11 +164,18 @@ public class GetBloodFragment extends Fragment {
                                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                             @Override
                                             public void onClick(SweetAlertDialog sDialog) {
-
+                                                //Intent intent = new Intent(getActivity(), ConnectUsers.class);
+                                                //startActivity(intent);
                                                 sDialog.dismissWithAnimation();
+
 
                                             }
                                         }).show();
+
+
+
+
+
 
                             } else {
 
@@ -247,7 +198,7 @@ public class GetBloodFragment extends Fragment {
 
 
                         }
-                    }.execute();*/
+                    }.execute();
                 }
 
 

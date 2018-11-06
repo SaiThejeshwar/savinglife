@@ -38,11 +38,14 @@ public class JoinNetworkActivity extends AppCompatActivity {
     private EditText email;
     private EditText facebook;
     private EditText blood;
-    private Spinner spinner;
-    private String nameStr,emailStr,facebookStr,bloodStr,country;
+    private String bloodv;
+    private Spinner spinner,bloodsp;
+    private String nameStr,emailStr,facebookStr,country;
     private Locale[] locale;
     private ArrayList<String> countries;
+    private ArrayList<String> bloodt;
     private ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +65,32 @@ public class JoinNetworkActivity extends AppCompatActivity {
         name = (EditText) findViewById(R.id.editText);
         email = (EditText) findViewById(R.id.editText2);
         facebook = (EditText) findViewById(R.id.editText5);
-        blood = (EditText) findViewById(R.id.editText4);
+        bloodsp = (Spinner) findViewById(R.id.bloods);
         spinner = (Spinner) findViewById(R.id.spinner);
+
+        setupSpinner1();
+        bloodsp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+                int position = bloodsp.getSelectedItemPosition();
+
+                if (!(position == 0) || !(position == 1)) {
+
+                    bloodv = bloodt.get(position);
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+
+
+        });
+
 
         setupSpinner();
 
@@ -95,12 +122,12 @@ public class JoinNetworkActivity extends AppCompatActivity {
 
                 nameStr = name.getText().toString();
                 emailStr = email.getText().toString();
-                bloodStr = blood.getText().toString();
+
                 facebookStr = facebook.getText().toString();
 
 
                 if (nameStr.isEmpty() || emailStr.isEmpty() ||
-                        bloodStr.isEmpty() || facebookStr.isEmpty()) {
+                        facebookStr.isEmpty()) {
 
                     Toast.makeText(JoinNetworkActivity.this, "Fill all data please..", Toast.LENGTH_LONG).show();
 
@@ -111,7 +138,7 @@ public class JoinNetworkActivity extends AppCompatActivity {
                     database.child("users").child(userId).child("data").child("name").setValue(nameStr);
                     database.child("users").child(userId).child("data").child("phone").setValue(phoneNumber);
                     database.child("users").child(userId).child("data").child("facebook").setValue(facebookStr);
-                    database.child("users").child(userId).child("data").child("blood").setValue(bloodStr);
+                    database.child("users").child(userId).child("data").child("blood").setValue(bloodv);
                     database.child("users").child(userId).child("data").child("city").setValue(country);
 
                     save("email" , emailStr);
@@ -136,6 +163,39 @@ public class JoinNetworkActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+    public void setupSpinner1() {
+
+        setupBloodList();
+
+        adapter1 = new ArrayAdapter<>(JoinNetworkActivity.this, android.R.layout.simple_spinner_item, bloodt);
+        bloodsp.setAdapter(adapter1);
+
+
+    }
+
+    public void setupBloodList() {
+
+        locale = Locale.getAvailableLocales();
+        bloodt = new ArrayList<String>();
+
+        bloodt.add("Select Donation Type");
+
+        bloodt.add("Kidney");
+        bloodt.add("O-");
+        bloodt.add("O+");
+        bloodt.add("A+");
+        bloodt.add("A-");
+        bloodt.add("B+");
+        bloodt.add("B-");
+        bloodt.add("AB+");
+        bloodt.add("AB-");
+
+    }
+
 
     private void setupSpinner() {
         setupCountriesList();

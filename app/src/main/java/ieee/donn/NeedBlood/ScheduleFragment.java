@@ -121,7 +121,7 @@ public class ScheduleFragment extends Fragment {
 
                 share("I've donated my blood for " + spf.getString("times", "0") +
                         " times\n#NeedBlood helped me to record my progress, " +
-                        "you can get it here and help to spread awareness about blood donation #OrgDonor #lifesavingapp");
+                        "you can get it here and help to spread awareness about blood donation #LifeSaving #lifesavingapp");
 
             }
         });

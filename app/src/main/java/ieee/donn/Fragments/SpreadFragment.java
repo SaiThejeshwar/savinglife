@@ -32,7 +32,7 @@ public class SpreadFragment extends Fragment {
             public void onClick(View v) {
 
                 //TODO Add the test
-                share("#Org Donor is an open-source blood donation network, you can view the source code here : Updated Soon ");
+                share("#Life Saving is an open-source blood donation network, you can view the source code here : Updated Soon ");
 
             }
         });
@@ -43,7 +43,7 @@ public class SpreadFragment extends Fragment {
 
                 //TODO Add the test
 
-                share("#Org Donor is an open-source blood donation network, you can get it here : Updated Soon");
+                share("#Life Saving is an open-source blood donation network, you can get it here : Updated Soon");
 
 
             }
@@ -53,7 +53,7 @@ public class SpreadFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                share("Everyday, All around the world, thousands of people are on the verge of dying due to their need to blood.\n\nYou can change this by giving away your blood..\n\nBecome a hero and save someone's live by giving them the gift of live!\n\n#Org Donor");
+                share("Everyday, All around the world, thousands of people are on the verge of dying due to their need to blood.\n\nYou can change this by giving away your blood..\n\nBecome a hero and save someone's live by giving them the gift of live!\n\n#Life Saving");
 
             }
         });

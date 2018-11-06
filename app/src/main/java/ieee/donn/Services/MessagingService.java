@@ -1,5 +1,6 @@
 package ieee.donn.Services;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -109,14 +110,43 @@ public class MessagingService extends FirebaseMessagingService {
                 PendingIntent.FLAG_ONE_SHOT);
 
         //String channelId = getString(R.string.default_notification_channel_id);
-        Uri alarmSound= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        //Uri alarmSound= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // The id of the channel.
+        String id = "my_channel_01";
+
+        // The user-visible name of the channel.
+        CharSequence name = "Donors";
+
+        // The user-visible description of the channel.
+        String description = "Please Help";
+
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+
+        NotificationChannel mChannel = new NotificationChannel(id, name,importance);
+
+        // Configure the notification channel.
+
+
+        mNotificationManager.createNotificationChannel(mChannel);
+
+        mNotificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Sets an ID for the notification, so it can be updated.
+        int notifyID = 1;
+
+        // The id of the channel.
+        String CHANNEL_ID = "my_channel_01";
+
+
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher)
                         .setContentTitle("Blood Needed")
                         .setContentText(bla)
                         .setAutoCancel(true)
-                        .setSound(alarmSound)
                         .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager =
@@ -130,6 +160,8 @@ public class MessagingService extends FirebaseMessagingService {
     public int createID(){
         Date now = new Date();
         int id = Integer.parseInt(new SimpleDateFormat("ddHHmmss",  Locale.US).format(now));
+        Log.d(TAG,"This is being Printed"+id);
+
         return id;
     }
 
