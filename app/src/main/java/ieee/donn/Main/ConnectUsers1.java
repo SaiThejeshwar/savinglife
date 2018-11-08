@@ -14,9 +14,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
 
 import ieee.donn.R;
@@ -26,19 +34,52 @@ public class ConnectUsers1 extends AppCompatActivity {
 
     Toolbar toolbar;
     TextView tvData, tvPatientName, tvPatientBlood;
-    Button call, message, facebookThem;
+    Button call, message, facebookThem,refresh;
     String name,blood,email,phone,facebook, country;
 
+    private void collectPhoneNumbers(Map<String,Object> users) {
+
+        ArrayList<String> phoneNumbers = new ArrayList<>();
+
+        //iterate through each user, ignoring their UID
+        for (Map.Entry<String, Object> entry : users.entrySet()){
+
+            //Get user map
+            Map singleUser = (Map) entry.getValue();
+            //Get phone field and append to list
+            phoneNumbers.add((String) singleUser.get("phone"));
+        }
+        phone=phoneNumbers.toString();
+
+        System.out.println(phoneNumbers.toString());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connect_users);
+        setContentView(R.layout.activity_connect_users1);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        String[] array = ["sasa","fdss"];
-        String randomStr = array[new Random().nextInt(array.length)];
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
+        ref.addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        //Get map of users in datasnapshot
+                        collectPhoneNumbers((Map<String,Object>) dataSnapshot.getValue());
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        //handle databaseError
+                    }
+                });
+
+
+
+        //String array=("wdww");
+        //String randomStr = array[new Random().nextInt(1)];
 
 
         if (5!=6) {
@@ -53,15 +94,35 @@ public class ConnectUsers1 extends AppCompatActivity {
 
         tvData = (TextView) findViewById(R.id.data);
         tvPatientName = (TextView) findViewById(R.id.tv_patient_name);
-        tvPatientBlood = findViewById(R.id.tv_patient_blood);
+        //tvPatientBlood = findViewById(R.id.tv_patient_blood);
         call = (Button) findViewById(R.id.call);
         facebookThem = (Button) findViewById(R.id.facebook);
         message = (Button) findViewById(R.id.message);
+        refresh=(Button) findViewById(R.id.refreshing);
 
 
         tvData.setText("Phone :  " + phone + "\nEmail:  " + email + "\nFacebook :  " + facebook + "\n");
         tvPatientName.setText("Name :  " + name);
-        tvPatientBlood.setText("Donation Type :  " + blood);
+        //tvPatientBlood.setText("Donation Type :  " + blood);
+
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                name = "Bafoon This is changing";
+                blood = "Kud";
+                email = "sai@testting.com";
+                phone = "+918686962216";
+                facebook = "theja";
+                country = "warangal";
+
+                tvData.setText("Phone :  " + phone + "\nEmail:  " + email + "\nFacebook :  " + facebook + "\n");
+                tvPatientName.setText("Name :  " + name);
+
+            }
+
+        });
+
+
 
 
         call.setOnClickListener(new View.OnClickListener() {
