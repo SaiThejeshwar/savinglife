@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingTop="9dp"
-                android:text="\nShare NeedBlood\n"
+                android:text="Share Life Saving"
                 android:textColor="#2E7D32"
                 android:textSize="20sp"
                 android:textStyle="bold" />

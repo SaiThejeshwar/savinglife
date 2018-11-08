@@ -36,6 +36,7 @@ public class ConnectUsers1 extends AppCompatActivity {
     TextView tvData, tvPatientName, tvPatientBlood;
     Button call, message, facebookThem,refresh;
     String name,blood,email,phone,facebook, country;
+    int indx;
 
     private void collectPhoneNumbers(Map<String,Object> users) {
 
@@ -49,7 +50,7 @@ public class ConnectUsers1 extends AppCompatActivity {
             //Get phone field and append to list
             phoneNumbers.add((String) singleUser.get("phone"));
         }
-        phone=phoneNumbers.toString();
+        //phone=phoneNumbers.toString();
 
         System.out.println(phoneNumbers.toString());
     }
@@ -66,12 +67,10 @@ public class ConnectUsers1 extends AppCompatActivity {
         final String[] name1 = getResources().getStringArray(R.array.name);
         final String[] phone1 = getResources().getStringArray(R.array.phone);
 
-        if (5!=6) {
-            String name = name1[new Random().nextInt(name1.length)];
-            String phone= phone1[new Random().nextInt(phone1.length)];
+        indx=new Random().nextInt(name1.length);
+        name = name1[indx];
+        phone= phone1[indx];
 
-
-        }
 
         tvData = (TextView) findViewById(R.id.data);
         tvPatientName = (TextView) findViewById(R.id.tv_patient_name);
@@ -82,7 +81,7 @@ public class ConnectUsers1 extends AppCompatActivity {
         refresh=(Button) findViewById(R.id.refreshing);
 
 
-        tvData.setText("Phone :  " + phone + "\nFacebook :  " + facebook + "\n");
+        tvData.setText("Phone :  " + phone + "\nFacebook :  " + name.toLowerCase() + "\n");
         tvPatientName.setText("Name :  " + name);
         //tvPatientBlood.setText("Donation Type :  " + blood);
 
@@ -90,14 +89,14 @@ public class ConnectUsers1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                indx=new Random().nextInt(name1.length);
+                name = name1[indx];
+                phone= phone1[indx];
 
-                String name = name1[new Random().nextInt(name1.length)];
-                String phone= phone1[new Random().nextInt(phone1.length)];
 
 
-
-                tvData.setText("Phone :  " + phone  + "\nFacebook :  " + name.toString().toLowerCase() + "\n");
-                tvPatientName.setText("Name :  " + name.toString().toUpperCase());
+                tvData.setText("Phone :  " + phone  + "\nFacebook :  " + name.toLowerCase() + "\n");
+                tvPatientName.setText("Name :  " + name.toUpperCase());
 
                 ref.addListenerForSingleValueEvent(
                         new ValueEventListener() {

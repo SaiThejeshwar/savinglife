@@ -23,23 +23,49 @@
 
 
 
+
+
     <string-array name="name">
-        <item>Sushrutha</item>
-        <item>Priyanka</item>
+        <item>Sunitha</item>
+        <item>Sujatha</item>
+        <item>Ritish</item>
+        <item>Sufiyan</item>
+        <item>Roja</item>
+        <item>Karthik</item>
         <item>Amrutha</item>
-        <item>Rajeev</item>
+        <item>Sandeep</item>
+        <item>Srikar</item>
+        <item>Niharika</item>
+        <item>Anusha</item>
+        <item>Divya</item>
+        <item>Aashika</item>
+        <item>Shravani</item>
+        <item>Vaibhavi</item>
+        <item>Samahitha</item>
+        <item>Rashmi</item>
         <item>Theja</item>
-        <item>Rohith</item>
     </string-array>
 
 
     <string-array name="phone">
-        <item>8686962216</item>
-        <item>7702745021</item>
+        <item>9989652615</item>
+        <item>9949208554</item>
+        <item>9542460105</item>
+        <item>9966725272</item>
+        <item>9666490898</item>
+        <item>9133793161</item>
         <item>9618314288</item>
-        <item>8897215157</item>
-        <item>9848458339</item>
-        <item>9703937351</item>
+        <item>8096342610</item>
+        <item>9550898090</item>
+        <item>9100816030</item>
+        <item>9100305913</item>
+        <item>9515717240</item>
+        <item>8074714385</item>
+        <item>9701130356</item>
+        <item>9000482486</item>
+        <item>7661082669</item>
+        <item>9494417979</item>
+        <item>8686962216</item>
     </string-array>
 
 </resources>

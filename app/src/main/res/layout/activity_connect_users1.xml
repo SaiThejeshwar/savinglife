@@ -86,7 +86,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
                         android:layout_marginTop="4dp"
-                        android:text="Patient data : "
+                        android:text="Donor data : "
                         android:textColor="#000"
                         android:textSize="15sp"
                         android:textStyle="bold" />

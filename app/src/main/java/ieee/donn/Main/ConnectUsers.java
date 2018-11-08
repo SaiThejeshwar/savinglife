@@ -27,7 +27,6 @@ public class ConnectUsers extends AppCompatActivity {
     Button call, message, facebookThem;
     String name,blood,email,phone,facebook, country;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
