@@ -20,4 +20,26 @@
     <string name="title_activity_login">Sign in</string>
     <string name="add_item">Add New Item</string>
     <string name="action_logout">Logout</string>
+
+
+
+    <string-array name="name">
+        <item>Sushrutha</item>
+        <item>Priyanka</item>
+        <item>Amrutha</item>
+        <item>Rajeev</item>
+        <item>Theja</item>
+        <item>Rohith</item>
+    </string-array>
+
+
+    <string-array name="phone">
+        <item>8686962216</item>
+        <item>7702745021</item>
+        <item>9618314288</item>
+        <item>8897215157</item>
+        <item>9848458339</item>
+        <item>9703937351</item>
+    </string-array>
+
 </resources>

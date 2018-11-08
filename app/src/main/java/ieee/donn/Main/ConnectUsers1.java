@@ -61,35 +61,16 @@ public class ConnectUsers1 extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
-        ref.addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //Get map of users in datasnapshot
-                        collectPhoneNumbers((Map<String,Object>) dataSnapshot.getValue());
-                    }
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        //handle databaseError
-                    }
-                });
-
-
-
-        //String array=("wdww");
-        //String randomStr = array[new Random().nextInt(1)];
-
+        final String[] name1 = getResources().getStringArray(R.array.name);
+        final String[] phone1 = getResources().getStringArray(R.array.phone);
 
         if (5!=6) {
+            String name = name1[new Random().nextInt(name1.length)];
+            String phone= phone1[new Random().nextInt(phone1.length)];
 
-            name = "Thejeshwar Testing";
-            blood = "Kidney";
-            email = "sai@testting.com";
-            phone = "+918686962216";
-            facebook = "theja";
-            country = "warangal";
+
         }
 
         tvData = (TextView) findViewById(R.id.data);
@@ -101,22 +82,36 @@ public class ConnectUsers1 extends AppCompatActivity {
         refresh=(Button) findViewById(R.id.refreshing);
 
 
-        tvData.setText("Phone :  " + phone + "\nEmail:  " + email + "\nFacebook :  " + facebook + "\n");
+        tvData.setText("Phone :  " + phone + "\nFacebook :  " + facebook + "\n");
         tvPatientName.setText("Name :  " + name);
         //tvPatientBlood.setText("Donation Type :  " + blood);
 
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                name = "Bafoon This is changing";
-                blood = "Kud";
-                email = "sai@testting.com";
-                phone = "+918686962216";
-                facebook = "theja";
-                country = "warangal";
 
-                tvData.setText("Phone :  " + phone + "\nEmail:  " + email + "\nFacebook :  " + facebook + "\n");
-                tvPatientName.setText("Name :  " + name);
+
+                String name = name1[new Random().nextInt(name1.length)];
+                String phone= phone1[new Random().nextInt(phone1.length)];
+
+
+
+                tvData.setText("Phone :  " + phone  + "\nFacebook :  " + name.toString().toLowerCase() + "\n");
+                tvPatientName.setText("Name :  " + name.toString().toUpperCase());
+
+                ref.addListenerForSingleValueEvent(
+                        new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                //Get map of users in datasnapshot
+                                collectPhoneNumbers((Map<String,Object>) dataSnapshot.getValue());
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                //handle databaseError
+                            }
+                        });
 
             }
 

@@ -69,7 +69,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="Country"
+                        android:text="Region"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textStyle="bold" />
 
@@ -83,7 +83,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
-                        android:text="Blood Type"
+                        android:text="Donation Type"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textStyle="bold" />
 

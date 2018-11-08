@@ -125,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
                         android:layout_marginTop="4dp"
-                        android:text="Phone :\nEmail:\nFacebook :"
+                        android:text="Phone :\n Facebook :"
                         android:textColor="#000"
                         android:textSize="15sp" />
                 </LinearLayout>
